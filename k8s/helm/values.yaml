@@ -3,8 +3,8 @@ config:
   AWS_S3_BUCKET: "replace-me"
   WEBHOOK_ENDPOINT: "replace-me"
   ENABLE_WEBHOOK_ENDPOINT: "true"
-  FILE_PATH: ""
-  DIRECTORY_PATH: ""
+  FILE_PATH: "replace-me" #comma separated list of file paths
+  DIRECTORY_PATH: "replace-me" #comma separated list of directory paths
 
 #DON'T USE SECRETS THIS WAY IN PRODUCTION! USE A SECRET MANAGEMENT SYSTEM LIKE VAULT OR AWS SECRETS MANAGER OR SEALED SECRETS.
 #THESE SECRETS ARE BASE64 ENCODED, NOT ENCRYPTED! THIS IS JUST A DEMO!
