@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pv-data-backup-config
+data:
+  AWS_S3_ENDPOINT_URL: {{ .Values.config.AWS_S3_ENDPOINT_URL }}
+  AWS_S3_BUCKET: {{ .Values.config.AWS_S3_BUCKET }}
+  WEBHOOK_ENDPOINT: {{ .Values.config.WEBHOOK_ENDPOINT }}
+  ENABLE_WEBHOOK_ENDPOINT: {{ .Values.config.ENABLE_WEBHOOK_ENDPOINT }}
+  FILE_PATH: {{ .Values.config.FILE_PATH }}
+  DIRECTORY_PATH: {{ .Values.config.DIRECTORY_PATH }}

@@ -1,0 +1,24 @@
+config:
+  AWS_S3_ENDPOINT_URL: "https://s3.de.io.cloud.ovh.net/"
+  AWS_S3_BUCKET: "replace-me"
+  WEBHOOK_ENDPOINT: "replace-me"
+  ENABLE_WEBHOOK_ENDPOINT: "true"
+  FILE_PATH: ""
+  DIRECTORY_PATH: ""
+
+#DON'T USE SECRETS THIS WAY IN PRODUCTION! USE A SECRET MANAGEMENT SYSTEM LIKE VAULT OR AWS SECRETS MANAGER OR SEALED SECRETS.
+#THESE SECRETS ARE BASE64 ENCODED, NOT ENCRYPTED! THIS IS JUST A DEMO!
+secrets:
+  AWS_S3_ACCESS_KEY_ID: "replace-me"
+  AWS_S3_SECRET_ACCESS_KEY: "replace-me"
+  ENCRYPTION_KEY: "replace-me"
+
+cronJob:
+  schedule: "0 5 * * *" # 5:00 AM
+  image: "ghcr.io/la-cc/k8s-data-to-s3-cronjob:latest"
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "250m"
+    limits:
+      memory: "256Mi"

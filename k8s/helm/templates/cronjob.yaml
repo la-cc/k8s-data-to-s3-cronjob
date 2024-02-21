@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pv-data-backup-job
+spec:
+  schedule: {{ .Values.cronJob.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 100
+            runAsGroup: 101
+            fsGroup: 101
+          containers:
+            - name: pv-data-backup
+              image: {{ .Values.cronJob.image }}
+              envFrom:
+                - secretRef:
+                    name: pv-data-backup-secrets
+                - configMapRef:
+                    name: pv-data-backup-config
+              resources:
+                requests:
+                  memory: {{ .Values.cronJob.resources.requests.memory }}
+                  cpu: {{ .Values.cronJob.resources.requests.cpu }}
+                limits:
+                  memory: {{ .Values.cronJob.resources.limits.memory }}
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: false
+                privileged: false
+                capabilities:
+                  drop:
+                    - ALL
+          restartPolicy: OnFailure

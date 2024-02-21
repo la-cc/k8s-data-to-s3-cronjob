@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pv-data-backup-job
+spec:
+  schedule: "* 5 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 100
+            runAsGroup: 101
+            fsGroup: 101
+          containers:
+            - name: pv-data-backup
+              image: ghcr.io/la-cc/k8s-data-to-s3-cronjob:latest
+              envFrom:
+                - secretRef:
+                    name: pv-data-backup-secrets
+                - configMapRef:
+                    name: pv-data-backup-config
+              resources:
+                requests:
+                  memory: "128Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "256Mi"
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: false
+                privileged: false
+                capabilities:
+                  drop:
+                    - ALL
