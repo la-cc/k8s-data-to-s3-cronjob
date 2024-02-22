@@ -72,6 +72,7 @@ COPY --from=builder /usr/bin/pg_dump /usr/bin/pg_dump
 COPY --from=builder /usr/bin/openssl /usr/bin/openssl
 COPY --from=builder /usr/bin/curl /usr/bin/curl
 COPY --from=builder /usr/bin/zip /usr/bin/zip
+COPY --from=builder /usr/bin/7z /usr/bin/7z
 
 
 # Create a non-root user 'backupuser'
@@ -84,7 +85,7 @@ COPY /build/docker/scripts/entrypoint.sh  .
 USER backupuser
 
 # Adjust the ENTRYPOINT as needed, for now, it's set to keep the container running
-ENTRYPOINT [ "./entrypoint.sh", "-f"]
+#ENTRYPOINT [ "./entrypoint.sh", "-f"]
 
 # For debugging purposes, keep the container running
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
