@@ -10,6 +10,7 @@ RUN apk add --no-cache \
     postgresql-client \
     openssl \
     zip \
+    p7zip \
     git \
     curl \
     groff \
@@ -59,7 +60,9 @@ RUN apk add --no-cache \
     postgresql-client \
     openssl \
     curl \
-    zip
+    zip \
+    libstdc++ \
+    libgcc
 
 
 # Copy installed binaries and libraries from the builder stage

@@ -5,7 +5,7 @@ encrypt_file() {
     local file_to_encrypt="$1"
     local encryption_key="$2"
     # Zip and encrypt the file
-    zip -j -P "$encryption_key" "${file_to_encrypt}.zip" "$file_to_encrypt"
+    7z a -tzip -p"$encryption_key" -mem=AES256 "${file_to_encrypt}.zip" "$file_to_encrypt"
     if [ $? -eq 0 ]; then
         echo "Zip and encryption successful: ${file_to_encrypt}.zip"
         # Optionally, remove the original file to save space
