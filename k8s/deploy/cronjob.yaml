@@ -15,6 +15,9 @@ spec:
           containers:
             - name: pv-data-backup
               image: ghcr.io/la-cc/k8s-data-to-s3-cronjob:latest
+              # can be used to keep the container running for debugging
+              # command: ["/bin/sh"]
+              # args: ["-c", "tail -f /dev/null"]
               envFrom:
                 - secretRef:
                     name: pv-data-backup-secrets
@@ -33,3 +36,4 @@ spec:
                 capabilities:
                   drop:
                     - ALL
+          restartPolicy: OnFailure
