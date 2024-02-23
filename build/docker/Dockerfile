@@ -85,7 +85,7 @@ COPY /build/docker/scripts/entrypoint.sh  .
 USER backupuser
 
 # Adjust the ENTRYPOINT as needed, for now, it's set to keep the container running
-#ENTRYPOINT [ "./entrypoint.sh", "-f"]
+ENTRYPOINT [ "./entrypoint.sh", "-f"]
 
 # For debugging purposes, keep the container running
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
